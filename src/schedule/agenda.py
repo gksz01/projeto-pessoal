@@ -8,6 +8,12 @@ def adicionar_contato(contatos: list, nome: str, telefone: any, email: str) -> D
     print(f"Contato {nome} adicionado com sucesso!")
     return
 def ver_contatos(contatos: list) -> List:
+    for indice, contato in enumerate(contatos, start=1):
+        favorito = "☆" if contato["favorito"] else " "
+        nome = contato["nome"]
+        telefone = contato["telefone"]
+        email = contato["email"]
+        print(f"{indice}.[{favorito}] {nome} {telefone} {email}")   
     return
 
 contatos = []
@@ -29,6 +35,8 @@ while True:
         telefone = input("Digite o numero do seu contato: ")
         email = input("Digite o email do seu contato: ")
         adicionar_contato(contatos, nome, telefone, email)
+    elif escolha == "2":
+        ver_contatos(contatos)
     elif escolha == "7":
         break
 
