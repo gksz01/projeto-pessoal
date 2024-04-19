@@ -5,7 +5,7 @@ def adicionar_contato(contatos: list, nome: str, telefone: any, email: str) -> D
                "email": email,
                "favorito": False}
     contatos.append(contato)
-    print(f"Contato {nome} adicionado com sucesso!")
+    print(f"\nContato {nome} adicionado com sucesso!")
     return
 def ver_contatos(contatos: list) -> List:
     for indice, contato in enumerate(contatos, start=1):
@@ -13,13 +13,13 @@ def ver_contatos(contatos: list) -> List:
         nome = contato["nome"]
         telefone = contato["telefone"]
         email = contato["email"]
-        print(f"{indice}.[{favorito}] Nome: {nome} || Telefone: {telefone} || Email: {email}")   
+        print(f"\n{indice}.[{favorito}] Nome: {nome} || Telefone: {telefone} || Email: {email}")   
     return
 def update_nome(contatos: list, indice_contato: int, novo_nome_contato: str) -> str:
     indice_ajustado = int(indice_contato) - 1
     if indice_ajustado >= 0 and indice_ajustado < len(contatos):
         contatos[indice_ajustado]["nome"] = novo_nome_contato
-        print(f"Contato {indice_contato} atualizado para {novo_nome_contato}")
+        print(f"\nContato {indice_contato} atualizado para {novo_nome_contato}")
     else:
         print("Indice da tarefa não corresonde com as existentes!")
 
@@ -32,7 +32,7 @@ def update_telefone(contatos: list, indice_contato: int, novo_telefone_contato: 
     indice_ajustado = int(indice_contato) - 1
     if indice_ajustado >= 0 and indice_ajustado < len(contatos):
         contatos[indice_ajustado]["telefone"] = novo_telefone_contato
-        print(f"Telefone do contato {indice_contato} atualizado para {novo_telefone_contato}")
+        print(f"\nTelefone do contato {indice_contato} atualizado para {novo_telefone_contato}")
     else:
         print("Indice da tarefa não corresonde com as existentes!")
 
@@ -45,7 +45,7 @@ def update_email(contatos: list, indice_contato: int, novo_email_contato: str) -
     indice_ajustado = int(indice_contato) - 1
     if indice_ajustado >= 0 and indice_ajustado < len(contatos):
         contatos[indice_ajustado]["email"] = novo_email_contato
-        print(f"Email do contato {indice_contato} atualizado para {novo_email_contato}")
+        print(f"\nEmail do contato {indice_contato} atualizado para {novo_email_contato}")
     else:
         print("Indice da tarefa não corresonde com as existentes!")
 
@@ -57,22 +57,42 @@ def update_email(contatos: list, indice_contato: int, novo_email_contato: str) -
 def favoritar_contato(contatos: list, indice_contato: int) -> str:
     indice_ajustado = int(indice_contato) - 1
     contatos[indice_ajustado]["favorito"] = True
-    print(f"Contato {indice_contato} adicionado aos Favoritos!")
+    print(f"\nContato {indice_contato} adicionado aos Favoritos!")
     if favoritar == "adicionar":
         return favoritar_contato
 
 def desfavoritar_contato(contatos: list, indice_contato: int) -> str:
     indice_ajustado = int(indice_contato) - 1
     contatos[indice_ajustado]["favorito"] = False
-    print(f"Contato {indice_contato} removido dos Favoritos!")
+    print(f"\nContato {indice_contato} removido dos Favoritos!")
     if favoritar == "remover":
         return desfavoritar_contato
     
-def ver_favoritos(contatos: list):
+def ver_favoritos(contatos: list) -> list:
+    print("Contatos Favoritos:")
+    for indice, contato in enumerate(contatos, start=1):
+        if contato["favorito"]:
+            nome = contato["nome"]
+            telefone = contato["telefone"]
+            email = contato["email"]
+            print(f"\n{indice}. Nome: {nome} || Telefone: {telefone} || Email: {email}")
     return
 
+# Function not 100% functional
+
+# def remover_contato(contatos: list, indice_contato: int) -> None: 
+#     indice_ajustado = int(indice_contato) - 1
+#     if indice_ajustado >= 0 and indice_ajustado < len(contatos):
+#         del contatos[indice_ajustado]
+#         print(f"\nContato {indice_contato} foi removido da sua agenda!")
+#     else:
+#         print("O contato que você escolheu não existe")
+#     return
+
+# Function not 100% functional
+
 contatos = []
-contatos_favoritos = []
+
 while True:
     print("\nMenu de Agenda de Contatos:")
     print("1. Adicionar Contato")
@@ -118,7 +138,11 @@ while True:
         else:
             print("Digite (adicionar) ou (remover) para prosseguir!")
     elif escolha == "5":
-        ver_favoritos(contatos_favoritos)
+        ver_favoritos(contatos)
+    elif escolha == "6":
+        ver_contatos(contatos)
+        remover = input("Digite qual contato deseja remover: ").lower()
+        #remover_contato(contatos, indice_contato)
     elif escolha == "7":
         break
 
