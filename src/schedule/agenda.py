@@ -147,4 +147,3 @@ while True:
         break
 
 print("Programa finalizado!")
-    
