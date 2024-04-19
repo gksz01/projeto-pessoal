@@ -13,7 +13,7 @@ def ver_contatos(contatos: list) -> List:
         nome = contato["nome"]
         telefone = contato["telefone"]
         email = contato["email"]
-        print(f"\n{indice}.[{favorito}] Nome: {nome} || Telefone: {telefone} || Email: {email}")   
+        print(f"{indice}.[{favorito}] Nome: {nome} || Telefone: {telefone} || Email: {email}")   
     return
 def update_nome(contatos: list, indice_contato: int, novo_nome_contato: str) -> str:
     indice_ajustado = int(indice_contato) - 1
@@ -78,18 +78,14 @@ def ver_favoritos(contatos: list) -> list:
             print(f"\n{indice}. Nome: {nome} || Telefone: {telefone} || Email: {email}")
     return
 
-# Function not 100% functional
-
-# def remover_contato(contatos: list, indice_contato: int) -> None: 
-#     indice_ajustado = int(indice_contato) - 1
-#     if indice_ajustado >= 0 and indice_ajustado < len(contatos):
-#         del contatos[indice_ajustado]
-#         print(f"\nContato {indice_contato} foi removido da sua agenda!")
-#     else:
-#         print("O contato que você escolheu não existe")
-#     return
-
-# Function not 100% functional
+def remover_contato(contatos: list, indice_contato: int) -> None: 
+    indice_ajustado = int(indice_contato) - 1
+    if indice_ajustado >= 0 and indice_ajustado < len(contatos):
+        del contatos[indice_ajustado]
+        print(f"\nContato {indice_contato} foi removido da sua agenda!")
+    else:
+        print("O contato que você escolheu não existe")
+    return
 
 contatos = []
 
@@ -141,8 +137,8 @@ while True:
         ver_favoritos(contatos)
     elif escolha == "6":
         ver_contatos(contatos)
-        remover = input("Digite qual contato deseja remover: ").lower()
-        #remover_contato(contatos, indice_contato)
+        indice_contato = input("Digite qual contato deseja remover: ").lower()
+        remover_contato(contatos, indice_contato)
     elif escolha == "7":
         break
 
